@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block titre %}
+Ajouter Acteur
+{% endblock %}
+
+{% block contenu %}
+
+<h1 class="mb-4">
+    Ajouter un acteur
+</h1>
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit"
+            class="btn btn-dark">
+
+        Ajouter
+
+    </button>
+
+</form>
+
+{% endblock %}

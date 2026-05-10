@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block titre %}
+Liste des acteurs
+{% endblock %}
+
+{% block contenu %}
+
+<div class="d-flex justify-content-between mb-4">
+
+    <h1>
+        Liste des acteurs
+    </h1>
+
+    <a href="{% url 'ajoutActeur' %}"
+       class="btn btn-dark">
+
+        Ajouter Acteur
+
+    </a>
+
+</div>
+
+<table class="table table-bordered table-hover">
+
+    <tr class="table-dark">
+
+        <th>Prénom</th>
+        <th>Nom</th>
+        <th>Mensurations</th>
+        <th>Actions</th>
+
+    </tr>
+
+    {% for acteur in acteurs %}
+
+    <tr>
+
+        <td>{{ acteur.prenom }}</td>
+
+        <td>{{ acteur.nom }}</td>
+
+        <td>{{ acteur.mensurations }}</td>
+
+        <td>
+
+            <a href="{% url 'editActeur' acteur.id %}"
+               class="btn btn-primary btn-sm">
+
+                Modifier
+
+            </a>
+
+            <a href="{% url 'deleteActeur' acteur.id %}"
+               class="btn btn-danger btn-sm">
+
+                Supprimer
+
+            </a>
+
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+{% endblock %}

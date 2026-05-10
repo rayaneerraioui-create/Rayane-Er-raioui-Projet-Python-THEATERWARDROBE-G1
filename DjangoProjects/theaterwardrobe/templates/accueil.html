@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block titre %}
+Accueil
+{% endblock %}
+
+{% block contenu %}
+
+<div class="text-center mt-5">
+
+    <h1 class="display-4 mb-4">
+        Bienvenue sur TheaterWardrobe
+    </h1>
+
+    <p class="lead mb-5">
+        Système de gestion des costumes et des acteurs
+    </p>
+
+    <a href="/acteurs/" class="btn btn-primary btn-lg me-3">
+        Voir les acteurs
+    </a>
+
+    <a href="/costumes/" class="btn btn-success btn-lg">
+        Voir les costumes
+    </a>
+
+</div>
+
+{% endblock %}

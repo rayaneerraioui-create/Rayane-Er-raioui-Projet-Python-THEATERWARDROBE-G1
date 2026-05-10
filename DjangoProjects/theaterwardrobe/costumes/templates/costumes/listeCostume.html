@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+
+{% block titre %}
+Liste des costumes
+{% endblock %}
+
+{% block contenu %}
+
+<div class="d-flex justify-content-between mb-4">
+
+    <h1>
+        Liste des costumes
+    </h1>
+
+    <a href="{% url 'ajoutCostume' %}"
+       class="btn btn-dark">
+
+        Ajouter Costume
+
+    </a>
+
+</div>
+
+<form method="GET" class="row mb-4">
+
+    <div class="col-md-2">
+
+        <input
+            type="text"
+            name="recherche"
+            class="form-control"
+            placeholder="Type">
+
+    </div>
+
+    <div class="col-md-2">
+
+        <input
+            type="text"
+            name="couleur"
+            class="form-control"
+            placeholder="Couleur">
+
+    </div>
+
+    <div class="col-md-2">
+
+        <input
+            type="text"
+            name="taille"
+            class="form-control"
+            placeholder="Taille">
+
+    </div>
+
+    <div class="col-md-2">
+
+        <input
+            type="date"
+            name="date_emprunt"
+            class="form-control">
+
+    </div>
+
+    <div class="col-md-2">
+
+        <select
+            name="disponibilite"
+            class="form-select">
+
+            <option value="">
+                Disponibilité
+            </option>
+
+            <option value="disponible">
+                Disponible
+            </option>
+
+            <option value="emprunte">
+                Emprunté
+            </option>
+
+        </select>
+
+    </div>
+
+    <div class="col-md-2">
+
+        <button type="submit"
+                class="btn btn-dark w-100">
+
+            Rechercher
+
+        </button>
+
+    </div>
+
+</form>
+
+<table class="table table-bordered table-hover">
+
+    <tr class="table-dark">
+
+        <th>Type</th>
+        <th>Époque</th>
+        <th>Couleur</th>
+        <th>Taille</th>
+        <th>État</th>
+        <th>Disponibilité</th>
+        <th>Date d'emprunt</th>
+        <th>Actions</th>
+
+    </tr>
+
+    {% for costume in costumes %}
+
+    <tr>
+
+        <td>{{ costume.type_costume.libelle }}</td>
+
+        <td>{{ costume.type_costume.epoque }}</td>
+
+        <td>{{ costume.couleur }}</td>
+
+        <td>{{ costume.taille }}</td>
+
+        <td>{{ costume.etat }}</td>
+
+        <td>
+
+            {% if costume.acteur %}
+
+                Emprunté par
+                {{ costume.acteur.prenom }}
+                {{ costume.acteur.nom }}
+
+            {% else %}
+
+                Disponible
+
+            {% endif %}
+
+        </td>
+
+        <td>
+
+            {% if costume.acteur %}
+
+                {{ costume.date_emprunt }}
+
+            {% endif %}
+
+        </td>
+
+        <td>
+
+            <a href="{% url 'editCostume' costume.id %}"
+               class="btn btn-primary btn-sm">
+
+                Modifier
+
+            </a>
+
+            <a href="{% url 'deleteCostume' costume.id %}"
+               class="btn btn-danger btn-sm">
+
+                Supprimer
+
+            </a>
+
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+{% endblock %}

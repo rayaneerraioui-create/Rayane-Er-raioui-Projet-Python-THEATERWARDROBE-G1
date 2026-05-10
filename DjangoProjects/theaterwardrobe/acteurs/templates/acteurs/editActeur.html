@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block titre %}
+Modifier Acteur
+{% endblock %}
+
+{% block contenu %}
+
+<h1 class="mb-4">
+    Modifier un acteur
+</h1>
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit"
+            class="btn btn-primary">
+
+        Modifier
+
+    </button>
+
+</form>
+
+{% endblock %}
